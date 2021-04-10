@@ -100,6 +100,7 @@ h1 /*Titles*/
   font-size: 200%;
   color: beige;
   padding: 0px;
+  text-align: center;
 }
 
 h3 /*Bold Text*/
@@ -128,4 +129,26 @@ p.Text /*Normal pharigraphs*/
   font-family: 'Courier New';
   font-size: 100%;
   color: azure;
+}
+
+
+/*Images*/
+
+div.gallery
+{
+  width: 50%;
+  float: left;
+  text-align: center;
+  padding: 0px;
+}
+div.gallery img
+{
+  width: 100%;
+  height: auto;
+}
+div.description
+{
+  padding: 20px;
+  text-align: center;
+  height: 20px;
 }
