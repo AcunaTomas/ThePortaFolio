@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <title class="titulo">The Portafolio - About</title>
+    <title class="titulo">The Portafolio - Special</title>
     <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
     <ul class="bar" style="font-family: Impact; color: antiquewhite; font-size: 225%; background-color: rgb(53, 52, 52); text-align: center;">
         <li class="bar"><a class="bar" href="../../index.html">Home</a></li>
@@ -15,9 +15,9 @@
     <script type="text/javascript">
 
         var config = {
-            type: Phaser.Auto,
+            type: Phaser.WEBGL,
             width: 800,
-            height: 600,
+            height: 720,
             physics: {
                 default: "arcade",
                 arcade: {
@@ -39,92 +39,154 @@
         var cursors;
         var score = 0;
         var gameOver = false;
+
+        var gameovercount = 0;
         var scoreText;
-        
+        var gText;
+        var lvl = 1;
+        var door;
         var game = new Phaser.Game(config);
-        
+        var doorstatus = "closed"
+        var camx;
+        var camy;
+        var ncamx;
+        var ncamy;
+        var starx;
+        var scoreobj;
+
         function preload ()
         {
+            //images
             this.load.setBaseURL('http://127.0.0.1:5500');
             this.load.image('sky', '../../Assets/Game/sky.png');
             this.load.image('ground', '../../Assets/Game/platform.png');
             this.load.image('star', '../../Assets/Game/star.png');
             this.load.image('bomb', '../../Assets/Game/bomb.png');
             this.load.spritesheet('dude', '../../Assets/Game/dude.png', { frameWidth: 32, frameHeight: 48 });
+            this.load.image('WGround', '../../Assets/Game/Ground.png');
+            this.load.image('WWall', '../../Assets/Game/Wall.png');
+            this.load.image('door', '../../Assets/Game/Door.png')
+            //sounds
+            this.load.audio('ascent', '../../Assets/Game/Sounds/Ascent.wav');
+            this.load.audio('descent', '../../Assets/Game/Sounds/Descent.wav');
+            this.load.audio('g', '../../Assets/Game/Sounds/GameHover.wav');
         }
         
         function create ()
         {
+            
             //  A simple background for our game
-            this.add.image(400, 300, 'sky');
-        
+            this.add.image(1920, 300, 'sky');
+            // Setting up the camera
+            coolcam= this.cameras.main;
+            this.cameras.main.setBounds(0,0,3840,720);
+            camx = 400;
+            camy = 0;
+            ncamx = 400;
+            ncamy = 0;
             //  The platforms group contains the ground and the 2 ledges we can jump on
             platforms = this . physics . add . staticGroup () ;
-        
+            ground = this.physics.add.staticGroup();
+            WorldWalls= this.physics.add.staticGroup();
+
             //  Here we create the ground.
-            //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-            platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-        
+            ground.create(1920,620, 'WGround');
+            ground.create(1920,0, 'WGround');
             //  Now let's create some ledges
-            platforms.create(600, 400, 'ground');
-            platforms.create(50, 250, 'ground');
-            platforms.create(750, 220, 'ground');
-        
+            platforms.create(0,550,'ground');
+            platforms.create(0,150,'ground');
+            platforms.create(400,300, 'ground')
+            platforms.create(1200,450, 'ground');
+            platforms.create(1200,200,'ground');
+            //World Bounds
+            WorldWalls.create(-10,300, 'WWall');
+            WorldWalls.create(3872,400, 'WWall');
+            WorldWalls.create(800,180, 'WWall');
+            WorldWalls.create(1600,180, 'WWall');
+            WorldWalls.create(2400,180, 'WWall');
+            WorldWalls.create(3200,180, 'WWall');
+
             // The player and its settings
             player = this.physics.add.sprite(100, 450, 'dude');
         
-            //  Player physics properties. Give the little guy a slight bounce.
-            player.setBounce(0.2);
-            player.setCollideWorldBounds(true);
+            player.setCollideWorldBounds(false);
         
             //  Our player animations, turning, walking left and walking right.
-            this.anims.create({
+            if (gameovercount < 1)
+            {
+                this.anims.create({
                 key: 'left',
                 frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
                 frameRate: 10,
                 repeat: -1
             });
-        
+
             this.anims.create({
                 key: 'turn',
                 frames: [ { key: 'dude', frame: 4 } ],
                 frameRate: 20
             });
-        
+
             this.anims.create({
                 key: 'right',
                 frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
                 frameRate: 10,
                 repeat: -1
             });
-        
+
+            }
+
+
             //  Input Events
             cursors = this.input.keyboard.createCursorKeys();
         
-            //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
+            //  Some stars to collect
+            starx = 20
             stars = this.physics.add.group({
                 key: 'star',
-                repeat: 11,
-                setXY: { x: 12, y: 0, stepX: 70 }
+                repeat: 4,
+                setXY: { x: starx, y: 0, stepX: 120 }
             });
-        
+            
             stars.children.iterate(function (child) {
         
                 //  Give each star a slightly different bounce
                 child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
         
             });
-        
+            
+            door = this.physics.add.staticGroup();
+            door.create(800,572, 'door');
+            door.create(1600,572, 'door');
+            door.create(2400,572, 'door');
+            door.create(3200,572, 'door');
+
+
             bombs = this.physics.add.group();
-        
+            
             //  The score
+            scoreobj = 200
             scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-        
-            //  Collide the player and the stars with the platforms
+            scoreText.scrollFactorX = 0;
+            scoreText.scrollFactorY = 0;
+            // Game Over Text
+            gText = this.add.text(50, 360, '', { fontSize: '72px', fill: '#000' });
+            gText.scrollFactorX = 0;
+            gText.scrollFactorY = 0;
+            //  Collide the player and the stars with the floor and platforms
             this.physics.add.collider(player, platforms);
+            this.physics.add.collider(player, WorldWalls);
+            this.physics.add.collider(player, ground);
             this.physics.add.collider(stars, platforms);
+            this.physics.add.collider(stars, ground);
+            this.physics.add.collider(stars, WorldWalls);
+            this.physics.add.collider(ground, door);
+            this.physics.add.collider(player, door);
+            this.physics.add.collider(bombs, door);
             this.physics.add.collider(bombs, platforms);
-        
+            this.physics.add.collider(bombs, ground);
+            this.physics.add.collider(bombs, WorldWalls);
+
             //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
             this.physics.add.overlap(player, stars, collectStar, null, this);
         
@@ -133,73 +195,131 @@
         
         function update ()
         {
-            if (gameOver)
+            if (ncamx > camx)
             {
-                return;
-            }
-        
-            if (cursors.left.isDown)
-            {
-                player.setVelocityX(-160);
-        
-                player.anims.play('left', true);
-            }
-            else if (cursors.right.isDown)
-            {
-                player.setVelocityX(160);
-        
-                player.anims.play('right', true);
+                camx = player.x
+                bombs.clear(true,true);
             }
             else
             {
-                player.setVelocityX(0);
-        
-                player.anims.play('turn');
+                if (doorstatus == "open")
+                {
+                    opcls()
+                    createstars()
+                    }
+
             }
-        
-            if (cursors.up.isDown && player.body.touching.down)
+            coolcam.centerOn(camx,camy)
+            if (gameOver)
             {
-                player.setVelocityY(-330);
+                scoreText.setText('Final Score:' + score);
+                gText.setText('G.A.M.E.O.V.E.R.');
+                this.physics.pause();
+
+                gameovercount += 1
+                player.setTint(0xff0000);
+                player.anims.play('turn');
+                if (cursors.shift.isDown)
+                {
+                    gameOver = false
+                    score = 0;
+                    this.scene.restart();
+
+                }
             }
+            else
+            {
+                if (cursors.left.isDown)
+                {
+                player.setVelocityX(-160);
+        
+                player.anims.play('left', true);
+                }
+                else if (cursors.right.isDown)
+                {
+                    player.setVelocityX(160);
+        
+                    player.anims.play('right', true);
+                }
+                else
+                {
+                    player.setVelocityX(0);
+        
+                    player.anims.play('turn');
+                }
+        
+                if (cursors.up.isDown && player.body.blocked.down)
+                {
+                    player.setVelocityY(-440);
+                }
+                //if (Phaser.Input.Keyboard.JustDown(cursors.shift))
+                //{
+                //    lvl += 2;
+                //    ncamx += 800
+                //    opcls()
+                //}
+                if (score >= scoreobj && doorstatus == "closed")
+                {
+                    lvl += 2;
+                    ncamx += 800
+                    opcls()
+                    starx += 800
+                    scoreobj += 200
+                    
+                }    
+            }
+           
         }
         
         function collectStar (player, star)
         {
-            star.disableBody(true, true);
+            star.destroy(true,true);
         
             //  Add and update the score
-            score += 10;
+            score += 20;
             scoreText.setText('Score: ' + score);
         
-            if (stars.countActive(true) === 0)
+            if (stars.countActive(true) === 0 && score < scoreobj)
             {
-                //  A new batch of stars to collect
-                stars.children.iterate(function (child) {
-        
-                    child.enableBody(true, child.x, 0, true, true);
-        
-                });
-        
-                var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-        
-                var bomb = bombs.create(x, 16, 'bomb');
-                bomb.setBounce(1);
-                bomb.setCollideWorldBounds(true);
-                bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-                bomb.allowGravity = false;
+                createstars()
         
             }
         }
-        
+        function createstars()
+        {
+        //  A new batch of stars to collect
+            a = 120
+            for (i=0; i<5; i++)
+            {
+                stars.create(starx+a,10, 'star');
+                a += 120
+            }
+
+            var x = camx + Phaser.Math.Between(-200, 200);
+            bombs.create(x, 16, 'bomb').setBounce(0.9).setCollideWorldBounds(false).setVelocity(Phaser.Math.Between(-200, 200), 20);
+
+        }
         function hitBomb (player, bomb)
         {
-            this.physics.pause();
-        
-            player.setTint(0xff0000);
-        
-            player.anims.play('turn');
-        
             gameOver = true;
+            this.sound.play('g')
+        }
+        function opcls ()
+        {
+            if (doorstatus == "closed")
+            {
+                door.children.iterate(function (child){
+                child.disableBody(true,true);
+                })
+                doorstatus = "open"
+            }
+            else
+            {
+                door.children.iterate(function (child){
+                child.enableBody(true,child.x, child.y, true, true);
+                })
+                doorstatus="closed"
+            }
         }
 
 </script>
