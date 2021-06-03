@@ -7,6 +7,11 @@ class Ini extends Phaser.Scene
     preload ()
     {
 
+<<<<<<< HEAD
+=======
+
+    this.load.setBaseURL('https://acunatomas.github.io');
+>>>>>>> 365b29ee2d3efc4bf725395f7672da4910f37f34
     //images
     this.load.image('load', '../../assets/Game/Loadingstr.png')
     this.load.image('sky', '../../assets/Game/sky.png');
