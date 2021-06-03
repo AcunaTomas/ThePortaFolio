@@ -7,21 +7,20 @@ class Ini extends Phaser.Scene
     preload ()
     {
 
-
     //images
-    this.load.image('load', '../../Assets/Game/Loadingstr.png')
-    this.load.image('sky', '../../Assets/Game/sky.png');
-    this.load.image('ground', '../../Assets/Game/platform.png');
-    this.load.image('star', '../../Assets/Game/star.png');
-    this.load.image('bomb', '../../Assets/Game/bomb.png');
-    this.load.spritesheet('dude', '../../Assets/Game/dude.png', { frameWidth: 32, frameHeight: 48 });
-    this.load.image('WGround', '../../Assets/Game/Ground.png');
-    this.load.image('WWall', '../../Assets/Game/Wall.png');
-    this.load.image('door', '../../Assets/Game/Door.png')
+    this.load.image('load', '../../assets/Game/Loadingstr.png')
+    this.load.image('sky', '../../assets/Game/sky.png');
+    this.load.image('ground', '../../assets/Game/platform.png');
+    this.load.image('star', '../../assets/Game/star.png');
+    this.load.image('bomb', '../../assets/Game/bomb.png');
+    this.load.spritesheet('dude', '../../assets/Game/dude.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.image('WGround', '../../assets/Game/Ground.png');
+    this.load.image('WWall', '../../assets/Game/wall.png');
+    this.load.image('door', '../../assets/Game/Door.png')
     //sounds
-    this.load.audio('ascent', '../../Assets/Game/Sounds/Ascent.wav');
-    this.load.audio('descent', '../../Assets/Game/Sounds/Descent.wav');
-    this.load.audio('g', '../../Assets/Game/Sounds/GameHover.wav');
+    this.load.audio('ascent', '../../assets/Game/Sounds/Ascent.wav');
+    this.load.audio('descent', '../../assets/Game/Sounds/Descent.wav');
+    this.load.audio('g', '../../assets/Game/Sounds/GameHover.wav');
     }
 
     create()
