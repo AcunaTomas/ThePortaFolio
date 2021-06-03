@@ -7,7 +7,7 @@ class Ini extends Phaser.Scene
     preload ()
     {
 
-    this.load.setBaseURL('http://127.0.0.1:5500');
+
     //images
     this.load.image('load', '../../Assets/Game/Loadingstr.png')
     this.load.image('sky', '../../Assets/Game/sky.png');
