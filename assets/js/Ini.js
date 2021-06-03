@@ -8,6 +8,7 @@ class Ini extends Phaser.Scene
     {
 
 
+    this.load.setBaseURL('https://acunatomas.github.io/ThePortaFolio');
     //images
     this.load.image('load', '../../Assets/Game/Loadingstr.png')
     this.load.image('sky', '../../Assets/Game/sky.png');
