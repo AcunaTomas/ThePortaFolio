@@ -68,7 +68,7 @@ ul.bar
 li.bar
 {
   float: left;
-  width: 33%;
+  width: 25%;
 
 }
 
@@ -90,7 +90,7 @@ li.bar:hover
 /* The body, with a different background color */
 div.body
 {
-  background-color: rgb(250, 221, 221);
+  background-color: rgb(131, 148, 180);
   color: black;
   margin: 0;
   width: 45%;
