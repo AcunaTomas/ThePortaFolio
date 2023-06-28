@@ -33,7 +33,7 @@ body
   font-style: normal;
   font-family: 'Verdana';
   background-color: white;
-  color: gainsboro;
+  color: rgb(0, 0, 0);
   display: grid;
   justify-items: center;
 }

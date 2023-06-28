@@ -37,7 +37,7 @@ ColorWheel.extend('theme', function (colorWheel) {
       });
 
       
-      newSwatches.append('div').attr('class', colorWheel.cx('theme-color')).style('margin-bottom', '30px').style('margin-top', '20px').style('filter', 'url(#deuteranopia)');
+      newSwatches.append('div').attr('class', colorWheel.cx('theme-color')).style('margin-bottom', '30px').style('margin-top', '100px').style('filter', 'url(#deuteranopia)');
       newSwatches.append('div').attr('class', colorWheel.cx('theme-color')).style('margin-bottom', '30px').style('filter', 'url(#protanopia)');
       newSwatches.append('div').attr('class', colorWheel.cx('theme-color')).style('filter', 'url(#tritanopia)');
     
