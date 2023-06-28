@@ -78,3 +78,87 @@ no importa cuanto planifiques, siempre va a haber un imprevisto, no te desanimes
     <div style="background-color: rgb(255, 255, 255);">
 
 </body>
+
+<script>
+function hsv2rgb(h,s,v) 
+{                              
+  let f= (n,k=(n+h/60)%6) => v - v*s*Math.max( Math.min(k,4-k,1), 0);     
+  return [f(5),f(3),f(1)];       
+}   
+//16 12 8 4 0
+//console.log(document.getElementsByClassName("colorwheel-theme-color"))
+
+
+
+
+//taken from: https://github.com/celigx/color-contrast-checker/blob/main/src/components/ContrastRatio.js
+
+  // Calculate luminance
+  // https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+  const luminance = (r, g, b) => {
+    const rgb = [r, g, b].map(value => {
+      
+
+      return value <= 0.03928
+        ? value / 12.92
+        : Math.pow( (value + 0.055) / 1.055, 2.4 );
+    });
+    
+    return rgb[0] * 0.2126 + rgb[1] * 0.7152 + rgb[2] * 0.0722;
+  }
+
+  // Calculate contrast
+  // https://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
+  const contrast = (rgb1, rgb2, rgb3, rgb4, rgb5) => {
+      const lum1 = luminance(rgb1[0], rgb1[1], rgb1[2]);
+      const lum2 = luminance(rgb2[0], rgb2[1], rgb2[2]);
+      const lum3 = luminance(rgb3[0], rgb3[1], rgb3[2]);
+      const lum4 = luminance(rgb4[0], rgb4[1], rgb4[2]);
+      const lum5 = luminance(rgb5[0], rgb5[1], rgb5[2]);
+      const brightest = Math.max(lum1, lum2, lum3, lum4, lum5);
+      const darkest = Math.min(lum1, lum2, lum3, lum4, lum5);
+      return (brightest + 0.05) / (darkest + 0.05);
+  }
+
+  // If the number is 21 or 1, don't add decimals
+  //const contrastRatio = contrast(textColor(), backgroundColor()) === 21 || contrast(textColor(), backgroundColor()) === 1 ? contrast(textColor(), backgroundColor()) : contrast(textColor(), backgroundColor()).toFixed(2);
+
+  function textRating(contrastRatio) {
+    console.log(contrastRatio)
+    if (contrastRatio >= 12 && contrastRatio <= 21) {
+      return 'Excellent'
+    } else if (contrastRatio >= 7 && contrastRatio < 12) {
+      return 'Very good'
+    } else if (contrastRatio >= 4.50 && contrastRatio < 7) {
+      return 'Good'
+    } else if (contrastRatio >= 3 && contrastRatio < 4.50) {
+      return 'Poor'
+    } else if (contrastRatio >= 1 && contrastRatio < 3) {
+      return 'Very poor'
+    }
+  }
+
+
+var all = document.getElementsByClassName("colorwheel-theme-color")
+var color1 = all[16].__data__.color;
+var color2 = all[8].__data__.color;
+var color3 = all[0].__data__.color;
+var color4 = all[4].__data__.color;
+var color5 = all[12].__data__.color;
+
+
+  console.log([color1,color2,color3,color4,color5]);
+  addEventListener("mouseup", (event) => { 
+
+    var converted1 = hsv2rgb(color1.h,color1.s,color1.v)
+    var converted2 = hsv2rgb(color2.h,color2.s,color2.v)
+    var converted3 = hsv2rgb(color3.h,color3.s,color3.v)
+    var converted4 = hsv2rgb(color4.h,color4.s,color4.v)
+    var converted5 = hsv2rgb(color5.h,color5.s,color5.v)
+
+    console.log(textRating(contrast(converted1,converted2,converted3,converted4,converted5)))
+    
+
+   });
+
+</script>
