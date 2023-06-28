@@ -41,7 +41,7 @@ body
 /* Everyone deserves to be welcome! - A basic sticky top bar */
 div.top
 {
-  background-color: rgb(174, 187, 212);
+  background-color: rgb(0, 0, 0);
   padding: 0;
   font-family: 'Trebuchet MS';
   font-size: 22px;
@@ -79,7 +79,7 @@ a.bar
   padding: 10px 14px;
   font-size: 32px;
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 li.bar:hover 
@@ -90,7 +90,7 @@ li.bar:hover
 /* The body, with a different background color */
 div.body
 {
-  background-color: rgb(174, 183, 202);
+  background-color: rgb(224, 251, 255);
   color: black;
   margin: 0;
   width: 45%;
