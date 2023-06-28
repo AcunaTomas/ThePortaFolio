@@ -22,7 +22,28 @@ no importa cuanto planifiques, siempre va a haber un imprevisto, no te desanimes
       left: 845px;
       }
     </style>
-    
+
+    <style>
+      .alerta {
+        position: absolute;
+        top: 390px;
+        left: 380px;
+      }
+    </style>
+
+    <style>
+    .alertatext {
+      position: absolute;
+      top: 540px;
+      left: 345px;
+    }
+    </style>
+
+    <style>
+    .hidden {
+      display: none;
+    }
+    </style>
 </head>
 
 <body style="background-color: whitesmoke;">
@@ -56,6 +77,11 @@ no importa cuanto planifiques, siempre va a haber un imprevisto, no te desanimes
     <script src="colorwheel.mode.js"></script>
     <script src="colorwheel.theme.js"></script>
     <script src="colorwheel.gradient.js"></script><script  src="./script.js"></script>
+
+    <img id="alertaimagen" class= "alerta" src="/images/lanuclear.png" alt="alertacontraste" width="8%">
+    <div id="alertatexto" class= "alertatext">
+    <span>Intente corregir el contraste</span>
+    </div>
  
     <div class="simulador-text">
       <h3>Simulador de Daltonismo</h3>
@@ -161,25 +187,43 @@ function hsv2rgb(h,s,v)
   function textRating(contrastRatio) {
     console.log(contrastRatio)
     if (contrastRatio >= 12 && contrastRatio <= 21) {
+      toggleImage()
       return 'Excellent'
     } else if (contrastRatio >= 7 && contrastRatio < 12) {
+      toggleImage()
       return 'Very good'
     } else if (contrastRatio >= 4.50 && contrastRatio < 7) {
+      toggleImage()
       return 'Good'
     } else if (contrastRatio >= 3 && contrastRatio < 4.50) {
+      toggleImage()
       return 'Poor'
     } else if (contrastRatio >= 1 && contrastRatio < 3) {
+      toggleImage()
       return 'Very poor'
     }
   }
 
+  
+  function toggleImage() {
+    var image = document.getElementById("alertaimagen");
+    var imageText = document.getElementById("alertatexto"); 
+      if (image.style.display === "none") {
+          image.style.display = "block";
+          imageText.style.display = "inline";
+      } 
+      else {
+      image.style.display = "none";
+      imageText.style.display = "none";
+    }
+  }
 
-var all = document.getElementsByClassName("colorwheel-theme-color")
-var color1 = all[16].__data__.color;
-var color2 = all[8].__data__.color;
-var color3 = all[0].__data__.color;
-var color4 = all[4].__data__.color;
-var color5 = all[12].__data__.color;
+  var all = document.getElementsByClassName("colorwheel-theme-color")
+  var color1 = all[16].__data__.color;
+  var color2 = all[8].__data__.color;
+  var color3 = all[0].__data__.color;
+  var color4 = all[4].__data__.color;
+  var color5 = all[12].__data__.color;
 
 
   console.log([color1,color2,color3,color4,color5]);
@@ -195,5 +239,7 @@ var color5 = all[12].__data__.color;
     
 
    });
+
+   
 
 </script>
