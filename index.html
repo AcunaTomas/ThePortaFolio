@@ -27,7 +27,7 @@ no importa cuanto planifiques, siempre va a haber un imprevisto, no te desanimes
       .alerta {
         position: absolute;
         top: 390px;
-        left: 380px;
+        left: 1235px;
       }
     </style>
 
@@ -35,7 +35,7 @@ no importa cuanto planifiques, siempre va a haber un imprevisto, no te desanimes
     .alertatext {
       position: absolute;
       top: 540px;
-      left: 345px;
+      left: 1200px;
     }
     </style>
 
@@ -183,40 +183,36 @@ function hsv2rgb(h,s,v)
 
   // If the number is 21 or 1, don't add decimals
   //const contrastRatio = contrast(textColor(), backgroundColor()) === 21 || contrast(textColor(), backgroundColor()) === 1 ? contrast(textColor(), backgroundColor()) : contrast(textColor(), backgroundColor()).toFixed(2);
+  
+  var image = document.getElementById("alertaimagen");
+  var imageText = document.getElementById("alertatexto"); 
 
   function textRating(contrastRatio) {
     console.log(contrastRatio)
     if (contrastRatio >= 12 && contrastRatio <= 21) {
-      toggleImage()
+      image.style.display = "none";
+      imageText.style.display = "none";
       return 'Excellent'
     } else if (contrastRatio >= 7 && contrastRatio < 12) {
-      toggleImage()
+      image.style.display = "none";
+      imageText.style.display = "none";
       return 'Very good'
     } else if (contrastRatio >= 4.50 && contrastRatio < 7) {
-      toggleImage()
+      image.style.display = "none";
+      imageText.style.display = "none";
       return 'Good'
     } else if (contrastRatio >= 3 && contrastRatio < 4.50) {
-      toggleImage()
+      image.style.display = "block";
+      imageText.style.display = "inline";
       return 'Poor'
     } else if (contrastRatio >= 1 && contrastRatio < 3) {
-      toggleImage()
+      image.style.display = "block";
+      imageText.style.display = "inline";
       return 'Very poor'
     }
   }
-
   
-  function toggleImage() {
-    var image = document.getElementById("alertaimagen");
-    var imageText = document.getElementById("alertatexto"); 
-      if (image.style.display === "none") {
-          image.style.display = "block";
-          imageText.style.display = "inline";
-      } 
-      else {
-      image.style.display = "none";
-      imageText.style.display = "none";
-    }
-  }
+
 
   var all = document.getElementsByClassName("colorwheel-theme-color")
   var color1 = all[16].__data__.color;
