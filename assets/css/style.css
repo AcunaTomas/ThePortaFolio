@@ -90,7 +90,7 @@ li.bar:hover
 /* The body, with a different background color */
 div.body
 {
-  background-color: rgb(131, 148, 180);
+  background-color: rgb(174, 183, 202);
   color: black;
   margin: 0;
   width: 45%;
@@ -119,9 +119,8 @@ h3 /*Bold Text*/
   font-style: normal;
   font-weight: bolder;
   padding: 0px;
-
-
 }
+
 h6.rainbow /*RAINBOW TEXT - WORK IN PROGRESS*/
 {
   background-image: repeating-linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red, violet);
