@@ -16,8 +16,22 @@ class Gameplay extends Phaser.Scene
     camy = 0;
     ncamx = 400;
     ncamy = 0;
-    //  The platforms group contains the ground and the 2 ledges we can jump on
+
     platforms = this . physics . add . staticGroup () ;
+    ground = this.physics.add.staticGroup();
+    WorldWalls= this.physics.add.staticGroup();
+    scoreText = this.add.text(20, 300, 'Score: 0', { fontSize: '28px', fill: '#000' });
+    scoreText.setText("What do you mean this isn't a good framework?");
+    scoreText.scrollFactorX = 0;
+    scoreText.scrollFactorY = 0;
+    }
+
+    update()
+    {
+        coolcam.scrollX += 0.17;
+    }
+    //  The platforms group contains the ground and the 2 ledges we can jump on
+/*     platforms = this . physics . add . staticGroup () ;
     ground = this.physics.add.staticGroup();
     WorldWalls= this.physics.add.staticGroup();
 
@@ -293,5 +307,5 @@ class Gameplay extends Phaser.Scene
             })
             doorstatus="closed"
         }
-    }
+    } */
 }
