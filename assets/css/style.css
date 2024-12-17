@@ -1,5 +1,5 @@
 :root{
-  --adaptiveminWidth: 60vh;
+  --adaptiveminWidth: 40vh;
 }
 
 
@@ -17,6 +17,22 @@ title.titulo
 75% {background-color: green;}
 100% {background-color: red;}
 
+}
+
+/* Common */
+.flexCentCol
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flexCentRow
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Layout */
@@ -59,7 +75,13 @@ ul.bar
 
 ul.listas
 {
-  list-style: lower-greek;
+
+  padding: 0px;
+  margin: 0px;
+}
+
+ul.listas li
+{
   padding: 0px;
   margin: 0px;
 }
@@ -93,6 +115,7 @@ div.body
   color: antiquewhite;
   margin: 0;
   padding: 5vh;
+  text-align: center;
 }
 
 .SquareContainer
@@ -103,7 +126,9 @@ div.body
   border-radius: 10px;
   border-style: inset;
   border-color: rgba(232, 153, 252, 0.300);
-  overflow: auto;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  scrollbar-color: rgb(48, 45, 45) rgb(27, 27, 27);
 }
 .SquareContainer div
 {
@@ -131,7 +156,25 @@ div.body
   max-height: var(--adaptiveminWidth);
 
 }
+.FlexibleBlock.ImageBlock
+{
+  min-height: 128px;
+  max-height: 128px;
+  min-width: 128px;
+  max-width: 128px;
+  overflow: hidden;
+}
+.ImageBlock img
+{
+  max-height: 128px;
+  max-width: 128px;
+}
 
+.genericImg
+{
+  max-width: 256px;
+  max-height: 256px;
+}
 /* Everything related to text */
 
 h1 /*Titles*/
@@ -200,7 +243,7 @@ div.description
 }
 
 
-@media (max-width: 600px){
+@media screen and (max-width: 600px){
 
   .FlexibleBlock
   {
