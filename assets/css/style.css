@@ -195,7 +195,7 @@ h3 /*Bold Text*/
   margin: 0px;
 }
 
-h6.rainbow /*RAINBOW TEXT - WORK IN PROGRESS*/
+.rainbow /*RAINBOW TEXT - WORK IN PROGRESS*/
 {
   /* background-image: repeating-linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red, violet); */
   background-clip: text;
