@@ -8,7 +8,7 @@ class Gameplay extends Phaser.Scene
     create ()
     {
     //  A simple background for our game
-    this.add.image(1920, 300, 'sky');
+    //this.add.image(1920, 300, 'sky');
     // Setting up the camera
     coolcam= this.cameras.main;
     this.cameras.main.setBounds(0,0,3840,720);
@@ -24,11 +24,29 @@ class Gameplay extends Phaser.Scene
     scoreText.setText("What do you mean this isn't a good framework?");
     scoreText.scrollFactorX = 0;
     scoreText.scrollFactorY = 0;
+
+    heart = this.add.sprite(400,300,'heart');
+    cursors = this.input.keyboard.createCursorKeys();
     }
 
     update()
     {
-        coolcam.scrollX += 0.17;
+        if (cursors.left.isDown)
+        {
+            heart.x -= 1 * spid;
+        }
+        if (cursors.right.isDown)
+        {
+            heart.x += 1 * spid;
+        }
+        if (cursors.up.isDown)
+        {
+            heart.y -= 1 * spid;
+        }
+        if (cursors.down.isDown)
+        {
+            heart.y += 1 * spid;
+        }
     }
     //  The platforms group contains the ground and the 2 ledges we can jump on
 /*     platforms = this . physics . add . staticGroup () ;
@@ -149,10 +167,11 @@ class Gameplay extends Phaser.Scene
 
     this.physics.add.collider(player, bombs, this.hitBomb, null, this);
     }
-
-    update ()
+*/
+   /* update ()
     {
-        if (gameOver)
+
+        /* if (gameOver)
         {
             scoreText.setText('Final Score:' + score +'. Press shift to restart!');
             if (score >= 800)
@@ -242,10 +261,10 @@ class Gameplay extends Phaser.Scene
     
             }
             coolcam.centerOn(camx,camy) 
-    }
+    } */
     
-    }
-
+    
+/*
     collectStar (player, star)
     {
         star.destroy(true,true);

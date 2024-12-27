@@ -18,6 +18,7 @@ class Ini extends Phaser.Scene
     this.load.image('WGround', '../../assets/Game/Ground.png');
     this.load.image('WWall', '../../assets/Game/wall.png');
     this.load.image('door', '../../assets/Game/Door.png')
+    this.load.image('heart', '../../assets/Game/heart.png')
     //sounds
     this.load.audio('ascent', '../../assets/Game/Sounds/Ascent.wav');
     this.load.audio('descent', '../../assets/Game/Sounds/Descent.wav');

@@ -1,6 +1,6 @@
 var config = {
     type: Phaser.WEBGL,
-    width: 800,
+    width: 1200,
     height: 720,
     physics: {
         default: "arcade",
@@ -36,5 +36,6 @@ var ncamx;
 var ncamy;
 var starx;
 var scoreobj;
-
+var heart;
+var spid = 3;
 var game = new Phaser.Game(config);
