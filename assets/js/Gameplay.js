@@ -25,7 +25,7 @@ class Gameplay extends Phaser.Scene
     scoreText.scrollFactorX = 0;
     scoreText.scrollFactorY = 0;
 
-    heart = this.add.sprite(400,300,'heart');
+    heart = this.add.sprite(this.cameras.main.centerX,this.cameras.main.centerY,'heart');
     cursors = this.input.keyboard.createCursorKeys();
     }
 

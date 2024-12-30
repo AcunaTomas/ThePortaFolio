@@ -158,16 +158,17 @@ div.body
 }
 .FlexibleBlock.ImageBlock
 {
-  min-height: 128px;
-  max-height: 128px;
-  min-width: 128px;
-  max-width: 128px;
+  min-height: 256px;
+  max-height: 256px;
+  min-width: 256px;
+  max-width: 256px;
+  padding: 0;
   overflow: hidden;
 }
 .ImageBlock img
 {
-  max-height: 128px;
-  max-width: 128px;
+  max-height: 90%;
+  max-width:  90%;
 }
 
 .genericImg
