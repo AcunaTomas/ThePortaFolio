@@ -1,7 +1,10 @@
+var ScreenWd = 1200
+var ScreenHt = 720
+
 var config = {
     type: Phaser.WEBGL,
-    width: 1200,
-    height: 720,
+    width: ScreenWd,
+    height: ScreenHt,
     physics: {
         default: "arcade",
         arcade: {
@@ -38,4 +41,5 @@ var starx;
 var scoreobj;
 var heart;
 var spid = 3;
+var bulla;
 var game = new Phaser.Game(config);

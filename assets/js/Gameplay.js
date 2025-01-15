@@ -17,16 +17,20 @@ class Gameplay extends Phaser.Scene
     ncamx = 400;
     ncamy = 0;
 
-    platforms = this . physics . add . staticGroup () ;
     ground = this.physics.add.staticGroup();
-    WorldWalls= this.physics.add.staticGroup();
+    ground.create(0,ScreenHt/2, 'WWall');
+    ground.create(ScreenWd,ScreenHt/2, 'WWall');
+    ground.create(0,0, 'WGround');
+    ground.create(0,ScreenHt, 'WGround');
     scoreText = this.add.text(20, 300, 'Score: 0', { fontSize: '28px', fill: '#000' });
     scoreText.setText("What do you mean this isn't a good framework?");
     scoreText.scrollFactorX = 0;
     scoreText.scrollFactorY = 0;
 
-    heart = this.add.sprite(this.cameras.main.centerX,this.cameras.main.centerY,'heart');
+    heart = this.physics.add.sprite(this.cameras.main.centerX,this.cameras.main.centerY,'heart');
     cursors = this.input.keyboard.createCursorKeys();
+
+    this.physics.add.collider(heart, ground);
     }
 
     update()
@@ -41,13 +45,21 @@ class Gameplay extends Phaser.Scene
         }
         if (cursors.up.isDown)
         {
-            heart.y -= 1 * spid;
+            heart.y -= 3 * spid;
         }
         if (cursors.down.isDown)
         {
             heart.y += 1 * spid;
         }
     }
+
+    bullaPawner(position)
+    {
+
+    }
+
+
+
     //  The platforms group contains the ground and the 2 ledges we can jump on
 /*     platforms = this . physics . add . staticGroup () ;
     ground = this.physics.add.staticGroup();
