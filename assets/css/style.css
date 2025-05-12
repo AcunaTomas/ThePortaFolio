@@ -115,25 +115,22 @@ div.body
   color: antiquewhite;
   margin: 0;
   padding: 5vh;
-  text-align: center;
+
 }
 
 .SquareContainer
 {
-  margin: 2vh;
-  padding: 5vh;
+  margin: 1vh;
+  padding: 1vh;
   background-color: rgb(48, 45, 45);
-  border-radius: 10px;
+  border-radius: 5px;
   border-style: inset;
   border-color: rgba(232, 153, 252, 0.300);
   overflow: hidden;
   overflow-wrap: anywhere;
   scrollbar-color: rgb(48, 45, 45) rgb(27, 27, 27);
 }
-.SquareContainer div
-{
-  margin: 2vh;
-}
+
 
 .body .FlexibleBlockContainer
 {
@@ -150,27 +147,38 @@ div.body
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 25rem;
+  max-width: 25rem;
   justify-content: center;
-  width: 50%;
   min-height: var(--adaptiveminWidth);
   max-height: var(--adaptiveminWidth);
 
 }
+
+
+
 .FlexibleBlock.ImageBlock
 {
-  min-height: 256px;
-  max-height: 256px;
-  min-width: 256px;
-  max-width: 256px;
+  min-height: 128px;
+  max-height: 128px;
+  min-width: 128px;
+  max-width: 128px;
   padding: 0;
   overflow: hidden;
+  text-align: center;
 }
 .ImageBlock img
 {
   max-height: 90%;
   max-width:  90%;
 }
-
+.ImageBlock.UncappedSize
+{
+  min-height: 256px;
+  max-height: 256px;
+  min-width: 256px;
+  max-width: 256px;
+}
 .genericImg
 {
   max-width: 256px;
@@ -186,7 +194,12 @@ h1 /*Titles*/
   padding: 0px;
   text-align: center;
 }
-
+h2
+{
+  font-family: Verdana;
+  font-size: 2rem;
+  text-align: center;
+}
 h3 /*Bold Text*/
 {
   font-family: Arial;
@@ -207,7 +220,7 @@ h3 /*Bold Text*/
   color: transparent;
 
 }
-p.Text /*Normal pharigraphs*/
+p.text /*Normal pharigraphs*/
 {
   font-family: 'Courier New';
   font-size: 100%;
@@ -226,15 +239,15 @@ p.Text /*Normal pharigraphs*/
 
 div.gallery
 {
-  width: 50%;
+
   float: left;
   text-align: center;
   padding: 0px;
 }
 div.gallery img
 {
-  width: 100%;
-  height: auto;
+  width: 50%;
+  height:50%;
 }
 div.description
 {
@@ -268,6 +281,7 @@ p.Text /*Normal pharigraphs*/
 {
   font-family: 'Courier New';
   font-size: 10px;
+  margin: 0;
   color: azure;
 }
 h1 /*Titles*/
@@ -287,7 +301,7 @@ h3 /*Bold Text*/
   font-size: 10px;
   padding: 0px;
 }
-  div.gallery
+div.gallery
 {
   width: 50%;
   float: left;

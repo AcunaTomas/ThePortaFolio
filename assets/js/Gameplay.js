@@ -22,7 +22,7 @@ class Gameplay extends Phaser.Scene
     ground.create(ScreenWd,ScreenHt/2, 'WWall');
     ground.create(0,0, 'WGround');
     ground.create(0,ScreenHt, 'WGround');
-    scoreText = this.add.text(20, 300, 'Score: 0', { fontSize: '28px', fill: '#000' });
+    scoreText = this.add.text(200, 300, 'Score: 0', { fontSize: '28px', fill: '#fff' });
     scoreText.setText("What do you mean this isn't a good framework?");
     scoreText.scrollFactorX = 0;
     scoreText.scrollFactorY = 0;
@@ -51,6 +51,7 @@ class Gameplay extends Phaser.Scene
         {
             heart.y += 1 * spid;
         }
+        scoreText.angle += 1
     }
 
     bullaPawner(position)

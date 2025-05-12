@@ -1,5 +1,8 @@
- var navBar = '<li class="bar"><a class="bar" href="index.html">Home</a></li> <li class="bar"><a class="bar" href="about.html">About</a></li>';
+var navBar = '<li class="bar"><a class="bar" href="index.html">Home</a></li> <li class="bar"><a class="bar" href="about.html">About</a></li>';
 
+var currentLang = "en"
+
+var LangButton = '<a class="langButton" onClick=ChangeLang()>' + currentLang +  '</a>'
 
 
 /* <!--    <li class="bar"><a class="bar" href="pages/Minipages/sources.html">Sources</a></li>
