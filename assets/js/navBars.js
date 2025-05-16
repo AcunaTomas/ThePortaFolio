@@ -1,4 +1,4 @@
-var navBar = '<li class="bar"><a class="bar" href="index.html">Home</a></li> <li class="bar"><a class="bar" href="about.html">About</a></li>';
+var navBar = '<li class="bar"><a class="bar" href="about_es.html">Español</a></li> <li class="bar"><a class="bar" href="about.html">English</a></li>';
 
 var currentLang = "en"
 
