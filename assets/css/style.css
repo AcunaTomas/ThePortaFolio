@@ -166,18 +166,28 @@ div.body
   padding: 0;
   overflow: hidden;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .ImageBlock img
 {
   max-height: 90%;
   max-width:  90%;
 }
+.ImageBlock a
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .ImageBlock.UncappedSize
 {
+
+  max-height: 256px;
+  max-width: 256px;
   min-height: 256px;
   max-height: 256px;
-  min-width: 256px;
-  max-width: 256px;
 }
 .genericImg
 {
