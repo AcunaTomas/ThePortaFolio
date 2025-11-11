@@ -1,6 +1,4 @@
-:root{
-  --adaptiveminWidth: 40vh;
-}
+
 
 
 
@@ -121,7 +119,6 @@ div.body
 .SquareContainer
 {
   margin: 1vh;
-  padding: 1vh;
   background-color: rgb(48, 45, 45);
   border-radius: 5px;
   border-style: inset;
@@ -150,8 +147,8 @@ div.body
   min-width: 25rem;
   max-width: 25rem;
   justify-content: center;
-  min-height: var(--adaptiveminWidth);
-  max-height: var(--adaptiveminWidth);
+  min-height: 40vh;
+  max-height: 40vh;
 
 }
 
@@ -235,6 +232,7 @@ p.text /*Normal pharigraphs*/
   font-family: 'Courier New';
   font-size: 100%;
   color: azure;
+  margin: 5px;
 }
 
 .navBarContainer
@@ -249,7 +247,6 @@ p.text /*Normal pharigraphs*/
 
 div.gallery
 {
-
   float: left;
   text-align: center;
   padding: 0px;
@@ -276,8 +273,8 @@ div.description
     align-items: center;
     justify-content: center;
     width: 50%;
-    min-height: 10vh;
-    max-height: 10vh;
+    min-height: 30vh;
+    max-height: 30vh;
   }
   .body .FlexibleBlockContainer
 {
@@ -287,11 +284,11 @@ div.description
   flex-direction: column;
   
 }
-p.Text /*Normal pharigraphs*/
+p.text /*Normal pharigraphs*/
 {
   font-family: 'Courier New';
-  font-size: 10px;
-  margin: 0;
+  font-size: 12px;
+  margin: 5px;
   color: azure;
 }
 h1 /*Titles*/
@@ -308,7 +305,7 @@ h3 /*Bold Text*/
   font-family: Arial;
   font-style: normal;
   font-weight: bolder;
-  font-size: 10px;
+  font-size: 12px;
   padding: 0px;
 }
 div.gallery
